@@ -2,14 +2,22 @@
 
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
+
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Menu from '@mui/material/Menu';
+import Toolbar from '@mui/material/Toolbar';
+import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
+import AdbIcon from '@mui/icons-material/Adb';
+import MenuIcon from '@mui/icons-material/Menu';
+
+import {useState} from 'react'
 import {
-  AppBar,
-  Toolbar,
+  IconButton,
   Button as MuiButton,
   Container as MuiContainer,
-  Typography,
-  Box
 } from '@mui/material';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
@@ -65,6 +73,12 @@ const BookButton = styled(MuiButton)`
   }
 `;
 
+const pages = [
+  {name:'About', link: '#about'},
+  {name:'Services', link: '#services'},
+  {name:'FAQ', link: '#'}
+];
+
 
 export default function Home() {
   const sliderSettings = {
@@ -77,23 +91,111 @@ export default function Home() {
     autoplaySpeed: 4000
   };
 
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+
+
+   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorElNav(event.currentTarget);
+  };
+
+  const handleCloseNavMenu = () => {
+    setAnchorElNav(null);
+  };
+
   return (
-    <Container maxWidth={false} disableGutters>
+      <Container maxWidth={false} disableGutters>
 
       <AppBar position="static" sx={{ backgroundColor: '#16a34a' }}>
-        <Toolbar sx={{ justifyContent: 'space-between' }}>
-          <Typography variant="h6" component="div" fontWeight="bold">
-            Makfa Services
+        <Toolbar disableGutters>
+     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <Typography
+            variant="h6"
+            noWrap
+            component="a"
+            href="#"
+            sx={{
+              mr: 2,
+              display: { xs: 'none', md: 'flex' },
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            MakfaVentures
           </Typography>
-          <Box sx={{ display: 'flex', gap: 2 }}>
-            <Link href="#services" passHref><MuiButton color="inherit">Services</MuiButton></Link>
-            <Link href="#about" passHref><MuiButton color="inherit">About</MuiButton></Link>
-            <Link href="#testimonials" passHref><MuiButton color="inherit">Testimonials</MuiButton></Link>
-            <Link href="/faq" passHref><MuiButton color="inherit">FAQ</MuiButton></Link>
-          </Box>
-        </Toolbar>
-      </AppBar>
 
+          <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
+              <IconButton
+              size="large"
+              aria-label="account of current user"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleOpenNavMenu}
+              color="inherit"
+            >
+              <MenuIcon />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorElNav}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'left',
+              }}
+              open={Boolean(anchorElNav)}
+              onClose={handleCloseNavMenu}
+              sx={{ display: { xs: 'block', md: 'none' } }}
+            >
+              {pages.map((page) => (
+                <MenuItem key={page.name} onClick={handleCloseNavMenu} >
+                  <Button href={page.link}>
+    <Typography sx={{ textAlign: 'center' }}>{page.name}</Typography>
+                  </Button>
+              
+                </MenuItem>
+              ))}
+            </Menu>
+          </Box>
+          <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+          <Typography
+            variant="h5"
+            noWrap
+            component="a"
+            href="#"
+            sx={{
+              mr: 2,
+              display: { xs: 'flex', md: 'none' },
+              flexGrow: 1,
+              fontFamily: 'monospace',
+              fontWeight: 700,
+              letterSpacing: '.3rem',
+              color: 'inherit',
+              textDecoration: 'none',
+            }}
+          >
+            MakfaVentures
+          </Typography>
+          <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
+            {pages.map((page) => (
+              <Button
+                key={page.name}
+                onClick={handleCloseNavMenu}
+                href={page.link}
+                sx={{ my: 2, color: 'white', display: 'block' }}
+              >
+                {page.name}
+              </Button>
+            ))}
+          </Box>
+          </Toolbar>
+      </AppBar>
       <Slider {...sliderSettings}>
         <Box sx={{ position: 'relative', height: 400 }}>
           <Image src="/images/cleaning1.jpg" alt="Clean Home" layout="fill" objectFit="cover" />
@@ -114,7 +216,6 @@ export default function Home() {
           </SlideOverlay>
         </Box>
       </Slider>
-
       <Main>
         <Section style={{ textAlign: 'center' }}>
           <Typography variant="h4" fontWeight="bold" gutterBottom>
@@ -131,7 +232,6 @@ export default function Home() {
             Book Now
           </BookButton>
         </Section>
-
         <Section id="services">
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             Our Services
@@ -151,35 +251,24 @@ export default function Home() {
             </Box>
           </Box>
         </Section>
-
         <Section id="about">
           <Typography variant="h5" fontWeight="bold" gutterBottom>
             About Makfa
           </Typography>
           <Typography>Makfa is a full-service company offering high-quality cleaning and support services. Our team is trained, trustworthy, and committed to customer satisfaction.</Typography>
         </Section>
-
-
-
-
       </Main>
-
       <Footer>
-        <Typography variant="h6" gutterBottom>Contact Us</Typography>
-        <Typography>Email: <a href="mailto:admin@makfaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@makfaservices.com</a></Typography>
-        <Typography>Phone: <a href="tel:+231 77 036 8302" style={{ color: 'white', textDecoration: 'underline' }}>+231 77 036 8302</a></Typography>
+        <Typography><a href="mailto:admin@makfaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@makfaservices.com</a></Typography>
+        <Typography><a href="tel:+231 77 036 8302" style={{ color: 'white', textDecoration: 'underline' }}>+231 77 036 8302</a></Typography>
         <Box mt={2}>
-          <MuiButton
-            variant="contained"
-            color="primary"
-            startIcon={<FacebookIcon />}
+          <IconButton
             href="https://www.facebook.com/share/19RiGyPgEP/"
             target="_blank"
             rel="noopener noreferrer"
-            sx={{ backgroundColor: '#1877F2' }}
           >
-            Visit our Facebook Page
-          </MuiButton>
+            <FacebookIcon />
+            </IconButton>
         </Box>
         <Box mt={2}>
           <Typography variant="body2">&copy; {new Date().getFullYear()} Makfa Services. All rights reserved.</Typography>
