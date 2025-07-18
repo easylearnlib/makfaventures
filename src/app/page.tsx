@@ -126,7 +126,6 @@ export default function Home() {
           <BookButton
             variant="contained"
             href="https://forms.gle/YDM9Po3zmvCCzPC7A"
-            target="_blank"
             rel="noopener noreferrer"
           >
             Book Now
