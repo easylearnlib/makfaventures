@@ -1,7 +1,6 @@
 'use client'
 
 import styled from 'styled-components';
-import Image from 'next/image';
 
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -19,10 +18,19 @@ import {
   Button as MuiButton,
   Container as MuiContainer,
 } from '@mui/material';
-import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Head from 'next/head';
+import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+
+
+const Wrapper = styled(MuiContainer)`
+  padding: 4rem 1rem;
+  max-width: 800px;
+`;
+
 
 const Footer = styled.footer`
   background-color: #16a34a;
@@ -74,13 +82,36 @@ const BookButton = styled(MuiButton)`
 `;
 
 const pages = [
-  {name:'About', link: '#about'},
-  {name:'Services', link: '#services'},
+  {name:'About', link: '/#about'},
+  {name:'Services', link: '/#services'},
   {name:'FAQ', link: '/faq'}
 ];
 
+const faqs = [
+  {
+    question: 'What types of cleaning services do you offer?',
+    answer: 'We offer residential, commercial, deep cleaning, and move-in/move-out cleaning services.'
+  },
+  {
+    question: 'How do I book a cleaning service?',
+    answer: 'You can book through our website by clicking the "Book Now" button, which opens our booking form.'
+  },
+  {
+    question: 'Are your cleaners background-checked?',
+    answer: 'Yes, all our in-house cleaners are thoroughly vetted and trained before joining our team.'
+  },
+  {
+    question: 'Do I need to provide cleaning supplies?',
+    answer: 'No, our team comes fully equipped with all necessary cleaning products and equipment.'
+  },
+  {
+    question: 'What is your cancellation policy?',
+    answer: 'You can cancel or reschedule up to 24 hours before your appointment without any fees.'
+  }
+];
 
-export default function Home() {
+
+export default function FAQ() {
   const sliderSettings = {
     dots: true,
     infinite: true,
@@ -112,7 +143,7 @@ export default function Home() {
             variant="h6"
             noWrap
             component="a"
-            href="#"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },
@@ -196,67 +227,21 @@ export default function Home() {
           </Box>
           </Toolbar>
       </AppBar>
-      <Slider {...sliderSettings}>
-        <Box sx={{ position: 'relative', height: 400 }}>
-          <Image src="/images/cleaning1.jpg" alt="Clean Home" layout="fill" objectFit="cover" />
-          <SlideOverlay>
-            <Typography variant="h4" fontWeight="bold">Your Home, Our Priority</Typography>
-          </SlideOverlay>
-        </Box>
-        <Box sx={{ position: 'relative', height: 400 }}>
-          <Image src="/images/cleaning2.jpg" alt="Professional Team" layout="fill" objectFit="cover" />
-          <SlideOverlay>
-            <Typography variant="h4" fontWeight="bold">Trained & Trusted Professionals</Typography>
-          </SlideOverlay>
-        </Box>
-        <Box sx={{ position: 'relative', height: 400 }}>
-          <Image src="/images/cleaning3.jpg" alt="Easy Booking" layout="fill" objectFit="cover" />
-          <SlideOverlay>
-            <Typography variant="h4" fontWeight="bold">Book in Seconds, Relax for Hours</Typography>
-          </SlideOverlay>
-        </Box>
-      </Slider>
       <Main>
-        <Section style={{ textAlign: 'center' }}>
-          <Typography variant="h4" fontWeight="bold" gutterBottom>
-            Reliable Cleaning & Service Solutions
-          </Typography>
-          <Typography variant="h6" paragraph>
-            Professional, trustworthy, and always on time. Let Makfa take care of it.
-          </Typography>
-          <BookButton
-            variant="contained"
-            href="https://forms.gle/YDM9Po3zmvCCzPC7A"
-            rel="noopener noreferrer"
-          >
-            Book Now
-          </BookButton>
-        </Section>
-        <Section id="services">
-          <Typography variant="h5" fontWeight="bold" gutterBottom>
-            Our Services
-          </Typography>
-          <Box display="grid" gap={3} gridTemplateColumns={{ xs: '1fr', md: '1fr 1fr 1fr' }}>
-            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
-              <Typography variant="h6" fontWeight="bold" gutterBottom>Home Cleaning</Typography>
-              <Typography>One-time, weekly, or monthly professional home cleaning.</Typography>
-            </Box>
-            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
-              <Typography variant="h6" fontWeight="bold" gutterBottom>Office Cleaning</Typography>
-              <Typography>Maintain a clean and productive workspace with our team.</Typography>
-            </Box>
-            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
-              <Typography variant="h6" fontWeight="bold" gutterBottom>Custom Services</Typography>
-              <Typography>Need something unique? Contact us for custom solutions.</Typography>
-            </Box>
-          </Box>
-        </Section>
-        <Section id="about">
-          <Typography variant="h5" fontWeight="bold" gutterBottom>
-            About Makfa
-          </Typography>
-          <Typography>Makfa is a full-service company offering high-quality cleaning and support services. Our team is trained, trustworthy, and committed to customer satisfaction.</Typography>
-        </Section>
+              <Wrapper>
+        <Typography variant="h4" gutterBottom>Frequently Asked Questions</Typography>
+        {faqs.map((faq, index) => (
+          <Accordion key={index}>
+            <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography fontWeight="bold">{faq.question}</Typography>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Typography>{faq.answer}</Typography>
+            </AccordionDetails>
+          </Accordion>
+        ))}
+      </Wrapper>
+
       </Main>
       <Footer>
         <Typography><a href="mailto:admin@makfaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@makfaservices.com</a></Typography>
