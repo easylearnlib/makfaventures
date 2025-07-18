@@ -83,7 +83,7 @@ export default function Home() {
       <AppBar position="static" sx={{ backgroundColor: '#16a34a' }}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <Typography variant="h6" component="div" fontWeight="bold">
-            Mafka Services
+            Makfa Services
           </Typography>
           <Box sx={{ display: 'flex', gap: 2 }}>
             <Link href="#services" passHref><MuiButton color="inherit">Services</MuiButton></Link>
@@ -94,7 +94,7 @@ export default function Home() {
         </Toolbar>
       </AppBar>
 
-         <Slider {...sliderSettings}>
+      <Slider {...sliderSettings}>
         <Box sx={{ position: 'relative', height: 400 }}>
           <Image src="/images/cleaning1.jpg" alt="Clean Home" layout="fill" objectFit="cover" />
           <SlideOverlay>
@@ -121,7 +121,7 @@ export default function Home() {
             Reliable Cleaning & Service Solutions
           </Typography>
           <Typography variant="h6" paragraph>
-            Professional, trustworthy, and always on time. Let Mafka take care of it.
+            Professional, trustworthy, and always on time. Let Makfa take care of it.
           </Typography>
           <BookButton
             variant="contained"
@@ -154,37 +154,37 @@ export default function Home() {
 
         <Section id="about">
           <Typography variant="h5" fontWeight="bold" gutterBottom>
-            About Mafka
+            About Makfa
           </Typography>
-          <Typography>Mafka is a full-service company offering high-quality cleaning and support services. Our team is trained, trustworthy, and committed to customer satisfaction.</Typography>
+          <Typography>Makfa is a full-service company offering high-quality cleaning and support services. Our team is trained, trustworthy, and committed to customer satisfaction.</Typography>
         </Section>
 
-      
 
-      
+
+
       </Main>
 
-                 <Footer>
-              <Typography variant="h6" gutterBottom>Contact Us</Typography>
-              <Typography>Email: <a href="mailto:admin@mafkaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@mafkaservices.com</a></Typography>
-              <Typography>Phone: <a href="tel:+231 77 036 8302" style={{ color: 'white', textDecoration: 'underline' }}>+231 77 036 8302</a></Typography>
-              <Box mt={2}>
-                <MuiButton
-                  variant="contained"
-                  color="primary"
-                  startIcon={<FacebookIcon />}
-                  href="https://www.facebook.com/share/19RiGyPgEP/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ backgroundColor: '#1877F2' }}
-                >
-                  Visit our Facebook Page
-                </MuiButton>
-              </Box>
-              <Box mt={2}>
-                <Typography variant="body2">&copy; {new Date().getFullYear()} Mafka Services. All rights reserved.</Typography>
-              </Box>
-            </Footer>
+      <Footer>
+        <Typography variant="h6" gutterBottom>Contact Us</Typography>
+        <Typography>Email: <a href="mailto:admin@makfaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@makfaservices.com</a></Typography>
+        <Typography>Phone: <a href="tel:+231 77 036 8302" style={{ color: 'white', textDecoration: 'underline' }}>+231 77 036 8302</a></Typography>
+        <Box mt={2}>
+          <MuiButton
+            variant="contained"
+            color="primary"
+            startIcon={<FacebookIcon />}
+            href="https://www.facebook.com/share/19RiGyPgEP/"
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ backgroundColor: '#1877F2' }}
+          >
+            Visit our Facebook Page
+          </MuiButton>
+        </Box>
+        <Box mt={2}>
+          <Typography variant="body2">&copy; {new Date().getFullYear()} Makfa Services. All rights reserved.</Typography>
+        </Box>
+      </Footer>
     </Container>
   );
 }

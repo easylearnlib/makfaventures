@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mafka Services",
-  description: "Professional cleaning and service solutions by Mafka.",
+  title: "Makfa Services",
+  description: "Professional cleaning and service solutions by Makfa.",
 };     
 
 export default function RootLayout({
