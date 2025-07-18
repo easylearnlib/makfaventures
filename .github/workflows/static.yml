@@ -14,7 +14,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [18.x] # or 20.x depending on your project
+        node-version: [18.x]
 
     steps:
       - name: 📥 Checkout repository
@@ -29,13 +29,13 @@ jobs:
         run: npm ci
 
       - name: ✅ Run tests
-        run: npm run test # Skip this if you don’t have tests
+        run: npm run test
 
       - name: 🛠️ Build project
         run: npm run build
 
       - name: 📂 Upload production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: nextjs-build
           path: .next
