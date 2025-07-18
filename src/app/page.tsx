@@ -1,95 +1,191 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+
+import styled from 'styled-components';
+import Image from 'next/image';
+import Link from 'next/link';
+import {
+  AppBar,
+  Toolbar,
+  Button as MuiButton,
+  Container as MuiContainer,
+  Typography,
+  Box
+} from '@mui/material';
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import FacebookIcon from '@mui/icons-material/Facebook';
+
+const Footer = styled.footer`
+  background-color: #16a34a;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+`;
+
+const Container = styled(MuiContainer)`
+  background-color: #f0fdf4;
+  color: #1f2937;
+  padding: 0;
+`;
+
+const SlideOverlay = styled(Box)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+`;
+
+const Main = styled.main`
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+`;
+
+const Section = styled.section`
+  margin-bottom: 4rem;
+`;
+
+const BookButton = styled(MuiButton)`
+  background-color: #16a34a !important;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 1.125rem;
+  &:hover {
+    background-color: #15803d !important;
+  }
+`;
+
 
 export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const sliderSettings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 4000
+  };
 
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
+  return (
+    <Container maxWidth={false} disableGutters>
+
+      <AppBar position="static" sx={{ backgroundColor: '#16a34a' }}>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <Typography variant="h6" component="div" fontWeight="bold">
+            Mafka Services
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            <Link href="#services" passHref><MuiButton color="inherit">Services</MuiButton></Link>
+            <Link href="#about" passHref><MuiButton color="inherit">About</MuiButton></Link>
+            <Link href="#testimonials" passHref><MuiButton color="inherit">Testimonials</MuiButton></Link>
+            <Link href="/faq" passHref><MuiButton color="inherit">FAQ</MuiButton></Link>
+          </Box>
+        </Toolbar>
+      </AppBar>
+
+         <Slider {...sliderSettings}>
+        <Box sx={{ position: 'relative', height: 400 }}>
+          <Image src="/images/cleaning1.jpg" alt="Clean Home" layout="fill" objectFit="cover" />
+          <SlideOverlay>
+            <Typography variant="h4" fontWeight="bold">Your Home, Our Priority</Typography>
+          </SlideOverlay>
+        </Box>
+        <Box sx={{ position: 'relative', height: 400 }}>
+          <Image src="/images/cleaning2.jpg" alt="Professional Team" layout="fill" objectFit="cover" />
+          <SlideOverlay>
+            <Typography variant="h4" fontWeight="bold">Trained & Trusted Professionals</Typography>
+          </SlideOverlay>
+        </Box>
+        <Box sx={{ position: 'relative', height: 400 }}>
+          <Image src="/images/cleaning3.jpg" alt="Easy Booking" layout="fill" objectFit="cover" />
+          <SlideOverlay>
+            <Typography variant="h4" fontWeight="bold">Book in Seconds, Relax for Hours</Typography>
+          </SlideOverlay>
+        </Box>
+      </Slider>
+
+      <Main>
+        <Section style={{ textAlign: 'center' }}>
+          <Typography variant="h4" fontWeight="bold" gutterBottom>
+            Reliable Cleaning & Service Solutions
+          </Typography>
+          <Typography variant="h6" paragraph>
+            Professional, trustworthy, and always on time. Let Mafka take care of it.
+          </Typography>
+          <BookButton
+            variant="contained"
+            href="https://forms.gle/YDM9Po3zmvCCzPC7A"
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+            Book Now
+          </BookButton>
+        </Section>
+
+        <Section id="services">
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            Our Services
+          </Typography>
+          <Box display="grid" gap={3} gridTemplateColumns={{ xs: '1fr', md: '1fr 1fr 1fr' }}>
+            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
+              <Typography variant="h6" fontWeight="bold" gutterBottom>Home Cleaning</Typography>
+              <Typography>One-time, weekly, or monthly professional home cleaning.</Typography>
+            </Box>
+            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
+              <Typography variant="h6" fontWeight="bold" gutterBottom>Office Cleaning</Typography>
+              <Typography>Maintain a clean and productive workspace with our team.</Typography>
+            </Box>
+            <Box bgcolor="white" p={3} borderRadius={2} boxShadow={1}>
+              <Typography variant="h6" fontWeight="bold" gutterBottom>Custom Services</Typography>
+              <Typography>Need something unique? Contact us for custom solutions.</Typography>
+            </Box>
+          </Box>
+        </Section>
+
+        <Section id="about">
+          <Typography variant="h5" fontWeight="bold" gutterBottom>
+            About Mafka
+          </Typography>
+          <Typography>Mafka is a full-service company offering high-quality cleaning and support services. Our team is trained, trustworthy, and committed to customer satisfaction.</Typography>
+        </Section>
+
+      
+
+      
+      </Main>
+
+                 <Footer>
+              <Typography variant="h6" gutterBottom>Contact Us</Typography>
+              <Typography>Email: <a href="mailto:admin@mafkaservices.com" style={{ color: 'white', textDecoration: 'underline' }}>admin@mafkaservices.com</a></Typography>
+              <Typography>Phone: <a href="tel:+231 77 036 8302" style={{ color: 'white', textDecoration: 'underline' }}>+231 77 036 8302</a></Typography>
+              <Box mt={2}>
+                <MuiButton
+                  variant="contained"
+                  color="primary"
+                  startIcon={<FacebookIcon />}
+                  href="https://www.facebook.com/share/19RiGyPgEP/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  sx={{ backgroundColor: '#1877F2' }}
+                >
+                  Visit our Facebook Page
+                </MuiButton>
+              </Box>
+              <Box mt={2}>
+                <Typography variant="body2">&copy; {new Date().getFullYear()} Mafka Services. All rights reserved.</Typography>
+              </Box>
+            </Footer>
+    </Container>
   );
 }
